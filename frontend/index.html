@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lost & Found Login</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f7fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
+      width: 350px;
+      text-align: center;
+    }
+
+    .login-container h2 {
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    .login-container input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      font-size: 15px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s;
+    }
+
+    .btn-login {
+      background: #27ae60;
+      color: white;
+    }
+
+    .btn-login:hover {
+      background: #219150;
+    }
+
+    .btn-signup {
+      background: #3498db;
+      color: white;
+    }
+
+    .btn-signup:hover {
+      background: #217dbb;
+    }
+
+    .note {
+      margin-top: 15px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .note a {
+      color: #3498db;
+      text-decoration: none;
+    }
+
+    .note a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Lost & Found Login</h2>
+    
+    <!-- Username -->
+    <input type="text" id="username" placeholder="Enter username">
+
+    <!-- Password -->
+    <input type="password" id="password" placeholder="Enter password">
+
+    <!-- Buttons -->
+    <button class="btn btn-login" onclick="login()">Login</button>
+    <button class="btn btn-signup" onclick="signup()">Signup</button>
+
+    <p class="note">New here? Click <a href="#" onclick="signup()">Signup</a></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

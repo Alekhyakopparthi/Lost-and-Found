@@ -1,0 +1,203 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f4f7fb;
+  color: #2c3e50;
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2c3e50;
+  color: white;
+  padding: 15px 30px;
+}
+
+.navbar h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  margin-right: 15px;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.navbar button {
+  background: #e74c3c;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.navbar button:hover {
+  background: #c0392b;
+}
+
+/* Upload Cards */
+.upload-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 30px auto;
+  flex-wrap: wrap;
+}
+
+.upload-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  width: 300px;
+}
+
+.upload-card h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #34495e;
+}
+
+.upload-card input,
+.upload-card textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.upload-card textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.upload-card button {
+  width: 100%;
+  background: #27ae60;
+  border: none;
+  padding: 10px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.2s ease;
+}
+
+.upload-card button:hover {
+  background: #219150;
+}
+
+/* Gallery Sections */
+.gallery {
+  margin: 30px;
+}
+
+.gallery h3 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #2c3e50;
+  border-left: 4px solid #27ae60;
+  padding-left: 10px;
+}
+
+/* Grid Layout */
+.grid-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  align-items: stretch; /* ensures equal card height */
+  margin: 20px 0;
+}
+
+/* Cards for Items */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 320px; /* uniform height */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0,0,0,0.15);
+}
+
+.card img {
+  max-width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.card strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 16px;
+  color: #2c3e50;
+}
+
+.card p {
+  font-size: 14px;
+  color: #555;
+  margin: 4px 0;
+}
+
+/* Delete Button */
+.btn-delete {
+  margin-top: auto;
+  background: #e74c3c;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s ease;
+}
+
+.btn-delete:hover {
+  background: #c0392b;
+}
+
+/* Contact Button (if you keep it later) */
+.btn-contact {
+  display: inline-block;
+  background: #007bff;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 8px;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.btn-contact:hover {
+  background: #0056b3;
+}

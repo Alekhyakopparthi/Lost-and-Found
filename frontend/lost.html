@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lost Items - Lost & Found Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="navbar">
+    <h2>Lost & Found Portal</h2>
+    <div>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="lost.html">Lost Items</a>
+      <a href="found.html">Found Items</a>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <h3 class="section-title">All Lost Items</h3>
+    <div id="lostGallery" class="grid-gallery"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    async function loadLostItems() {
+      const res = await fetch(API + "/items/lost");
+      const data = await res.json();
+
+      document.getElementById("lostGallery").innerHTML = data.map(i => `
+        <div class="card">
+          <img src="${API}${i.image_path}" alt="${i.title}" class="card-img">
+          <div class="card-body">
+            <h4>${i.title || "No title"}</h4>
+            <p>${i.description || ""}</p>
+            <p><strong>Name:</strong> ${i.contact_name || "N/A"}</p>
+            <p><strong>Phone:</strong> ${i.contact_phone || "N/A"}</p>
+            
+            ${i.uploaded_by == localStorage.getItem("userId") 
+              ? `<button class="btn-delete" onclick="deleteItem(${i.id})">Delete</button>` 
+              : ""}
+          </div>
+        </div>
+      `).join("");
+    }
+    loadLostItems();
+  </script>
+</body>
+</html>
