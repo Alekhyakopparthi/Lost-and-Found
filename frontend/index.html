@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Lost & Found Login</title>
-  <link rel="stylesheet" href="style.css">
   <style>
     body {
       font-family: "Segoe UI", Arial, sans-serif;
@@ -15,91 +14,231 @@
       margin: 0;
     }
 
-    .login-container {
-      background: white;
+    .container {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0px 6px 20px rgba(0,0,0,0.1);
+      width: 850px;
+      max-width: 100%;
+      min-height: 480px;
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* Left panel */
+    .left-panel {
+      flex: 1;
+      background: linear-gradient(to bottom, #90a8d0, #bac8e0);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0px 6px 15px rgba(0,0,0,0.1);
-      width: 350px;
       text-align: center;
     }
 
-    .login-container h2 {
-      margin-bottom: 20px;
-      color: #2c3e50;
+    .left-panel h1 {
+      margin-bottom: 15px;
     }
 
-    .login-container input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+    .left-panel p {
       font-size: 14px;
     }
 
-    .btn {
+    /* Right panel */
+    .right-panel {
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Pastel pill toggle tabs */
+    .tab-buttons {
+      display: flex;
+      margin-bottom: 25px;
       width: 100%;
-      padding: 12px;
+      max-width: 350px;
+      background: #e8f0f7;
+      border-radius: 30px;
+      padding: 5px;
+    }
+
+    .tab-buttons button {
+      flex: 1;
+      padding: 12px 0;
       border: none;
-      border-radius: 6px;
-      font-size: 15px;
       cursor: pointer;
-      margin-top: 10px;
-      transition: background 0.3s;
-    }
-
-    .btn-login {
-      background: #27ae60;
-      color: white;
-    }
-
-    .btn-login:hover {
-      background: #219150;
-    }
-
-    .btn-signup {
-      background: #3498db;
-      color: white;
-    }
-
-    .btn-signup:hover {
-      background: #217dbb;
-    }
-
-    .note {
-      margin-top: 15px;
-      font-size: 13px;
+      font-weight: bold;
+      border-radius: 25px;
+      background: transparent;
+      transition: all 0.3s ease;
       color: #555;
     }
 
-    .note a {
-      color: #3498db;
-      text-decoration: none;
+    .tab-buttons button.active {
+      background: #a8d8ea;
+      color: #2c3e50;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
-    .note a:hover {
-      text-decoration: underline;
+    form {
+      width: 100%;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn 0.4s ease;
+    }
+
+    form h2 {
+      text-align: left;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+
+    form input {
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background: #f4f7fb;
+    }
+
+    form button {
+      background: #27ae60;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    form button:hover {
+      background: #219150;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <h2>Lost & Found Login</h2>
-    
-    <!-- Username -->
-    <input type="text" id="username" placeholder="Enter username">
+  <div class="container">
+    <!-- Left Panel -->
+    <div class="left-panel">
+      <h1>Welcome Back!</h1>
+      <p>Login to continue managing Lost & Found items</p>
+    </div>
 
-    <!-- Password -->
-    <input type="password" id="password" placeholder="Enter password">
+    <!-- Right Panel -->
+    <div class="right-panel">
+      <div class="tab-buttons">
+        <button id="signupTab" class="active" onclick="showSignup()">Sign up</button>
+        <button id="loginTab" onclick="showLogin()">Login</button>
+      </div>
 
-    <!-- Buttons -->
-    <button class="btn btn-login" onclick="login()">Login</button>
-    <button class="btn btn-signup" onclick="signup()">Signup</button>
+      <!-- Signup Form -->
+      <form id="signupForm" onsubmit="signup(event)">
+        <h2>Create Account</h2>
+        <input type="text" placeholder="Username" id="signupUsername" required />
+        <input type="password" placeholder="Password" id="signupPassword" required />
+        <button type="submit">Sign up</button>
+      </form>
 
-    <p class="note">New here? Click <a href="#" onclick="signup()">Signup</a></p>
+      <!-- Login Form -->
+      <form id="loginForm" style="display: none;" onsubmit="login(event)">
+        <h2>Login</h2>
+        <input type="text" placeholder="Username" id="loginUsername" required />
+        <input type="password" placeholder="Password" id="loginPassword" required />
+        <button type="submit">Login</button>
+      </form>
+    </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+  const signupTab = document.getElementById("signupTab");
+  const loginTab = document.getElementById("loginTab");
+  const signupForm = document.getElementById("signupForm");
+  const loginForm = document.getElementById("loginForm");
+
+  function showSignup() {
+    signupTab.classList.add("active");
+    loginTab.classList.remove("active");
+    signupForm.style.display = "flex";
+    loginForm.style.display = "none";
+  }
+
+  function showLogin() {
+    loginTab.classList.add("active");
+    signupTab.classList.remove("active");
+    loginForm.style.display = "flex";
+    signupForm.style.display = "none";
+  }
+
+  // ✅ Signup
+  async function signup(event) {
+    event.preventDefault();
+    const username = document.getElementById("signupUsername").value.trim();
+    const password = document.getElementById("signupPassword").value.trim();
+
+    try {
+      const res = await fetch("http://localhost:5000/auth/signup", {   <!-- 👈 changed here -->
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        alert("Signup failed: " + (err.message || "Unknown error"));
+        return;
+      }
+
+      alert("Signup successful! Please login.");
+      showLogin();
+
+    } catch (err) {
+      console.error(err);
+      alert("Error connecting to server. Check if backend is running.");
+    }
+  }
+
+  // ✅ Login
+  async function login(event) {
+    event.preventDefault();
+    const username = document.getElementById("loginUsername").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
+
+    try {
+      const res = await fetch("http://localhost:5000/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        alert("Login failed: " + (err.message || "Invalid credentials"));
+        return;
+      }
+
+      const data = await res.json();
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.userId);
+      window.location.href = "dashboard.html";
+
+    } catch (err) {
+      console.error(err);
+      alert("Error connecting to server. Check if backend is running.");
+    }
+  }
+</script>
+
 </body>
 </html>

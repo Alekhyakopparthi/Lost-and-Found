@@ -5,26 +5,69 @@
   <title>Found Items - Lost & Found Portal</title>
   <link rel="stylesheet" href="style.css">
   <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #f4f7fb;
+      margin: 0;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #a3c4f3;
+      color: #2c3e50;
+      padding: 15px 30px;
+    }
+    .navbar h2 { margin: 0; font-size: 20px; }
+    .navbar a { color: white; margin-right: 15px; text-decoration: none; font-weight: 500; }
+    .navbar a:hover { text-decoration: underline; }
+    .navbar button {
+      background: #e74c3c; border: none; color: white;
+      padding: 8px 16px; border-radius: 5px; cursor: pointer;
+    }
+
+    
+
+    /* Gallery */
+    .grid-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    /* Cards */
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0px 6px 14px rgba(0,0,0,0.12); }
+    .card img { max-width: 100%; border-radius: 8px; margin-bottom: 10px; }
+    .card-body h4 { margin-bottom: 6px; color: #34495e; }
+    .card-body p { margin: 4px 0; font-size: 14px; color: #555; }
+
+    /* Delete Button */
     .btn-delete {
-      margin-top: 12px;
+      margin-top: 10px;
       background: #e74c3c;
       border: none;
       color: white;
-      padding: 8px 14px;
+      padding: 6px 12px;
       border-radius: 6px;
       cursor: pointer;
-      font-size: 14px;
       transition: background 0.2s ease;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
     }
-    .btn-delete:hover {
-      background: #c0392b;
-    }
+    .btn-delete:hover { background: #c0392b; }
   </style>
 </head>
 <body>
+  <!-- Navbar -->
   <div class="navbar">
     <h2>Lost & Found Portal</h2>
     <div>
@@ -40,6 +83,7 @@
     <div id="foundGallery" class="grid-gallery"></div>
   </div>
 
+
   <script src="script.js"></script>
   <script>
     async function loadFoundItems() {
@@ -48,14 +92,12 @@
 
       document.getElementById("foundGallery").innerHTML = data.map(i => `
         <div class="card">
-          <img src="${API}${i.image_path}" alt="${i.title}" class="card-img">
+          <img src="${API}${i.image_path}" alt="${i.title}">
           <div class="card-body">
-            <h4 class="item-title">${i.title || "No title"}</h4>
-            <p class="item-desc">${i.description || ""}</p>
-            <div class="contact-info">
-              <span><strong>Name:</strong> ${i.contact_name || "N/A"}</span><br>
-              <span><strong>Phone:</strong> ${i.contact_phone || "N/A"}</span>
-            </div>
+            <h4>${i.title || "No title"}</h4>
+            <p>${i.description || ""}</p>
+            <p><strong>Name:</strong> ${i.contact_name || "N/A"}</p>
+            <p><strong>Phone:</strong> ${i.contact_phone || "N/A"}</p>
             ${i.uploaded_by == localStorage.getItem("userId") 
               ? `<button class="btn-delete" onclick="deleteItem(${i.id})">Delete</button>` 
               : ""}

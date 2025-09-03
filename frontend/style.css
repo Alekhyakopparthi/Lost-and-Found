@@ -129,6 +129,7 @@ body {
 }
 
 /* Cards for Items */
+
 .card {
   display: flex;
   flex-direction: column;
@@ -200,4 +201,27 @@ body {
 
 .btn-contact:hover {
   background: #0056b3;
+}
+
+/* Navigation Cards Styling */
+.nav-card {
+  background: #fdfdfd;
+  border: 2px solid #e5e7eb;
+}
+
+.lost-card h3 {
+  color: #d97706; /* pastel amber */
+}
+
+.found-card h3 {
+  color: #2563eb; /* pastel blue */
+}
+
+.nav-card button {
+  background: #a7c7e7; /* pastel blue */
+  color: #2c3e50;
+}
+
+.nav-card button:hover {
+  background: #90b4d6;
 }
